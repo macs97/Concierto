@@ -151,19 +151,15 @@ namespace Concierto.Common.Services
 
                 string url = $"{servicePrefix}{controller}";
                 HttpResponseMessage response = await client.PostAsync(url, content);
-                string answer = await response.Content.ReadAsStringAsync();
-                User obj = JsonConvert.DeserializeObject<User>(answer);
+                string result = await response.Content.ReadAsStringAsync();
+                User obj = JsonConvert.DeserializeObject<User>(result);
                 
                 if (!response.IsSuccessStatusCode)
                 {
-                    string result = await response.Content.ReadAsStringAsync();
+                    Response res = JsonConvert.DeserializeObject<Response>(result);
                     if (result.Contains("User already exists"))
                     {
-                        return new Response
-                        {
-                            IsSuccess = false,
-                            Message = result,
-                        };
+                        return res;
                     }
                 }
 
@@ -172,8 +168,6 @@ namespace Concierto.Common.Services
                     IsSuccess = true,
                     Result = obj
                 };
-                
-               // return obj;
             }
             catch (Exception ex)
             {
