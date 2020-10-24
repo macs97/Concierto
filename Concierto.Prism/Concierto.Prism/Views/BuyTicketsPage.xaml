@@ -11,14 +11,14 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
+            <StackLayout>
+                <inputLayout:SfTextInputLayout Hint="Cantidad" 
+                                                           ContainerType="Outlined">
+                            <Entry Placeholder="Cantidad"
+                                       Text="{Binding Cantidad}" />
+                        </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Hint="Cantidad" 
-                                                       ContainerType="Outlined">
-                        <Entry Placeholder="Cantidad"
-                                   Text="{Binding Cantidad}" />
-                    </inputLayout:SfTextInputLayout>
-
-
+            </StackLayout>
             <StackLayout VerticalOptions="EndAndExpand">
                 <Button Command="{Binding BuyTicketCommand}" 
                         Text="Buy"/>
